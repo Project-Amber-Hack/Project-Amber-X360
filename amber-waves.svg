@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Primary Amber to Orange Linear Gradient -->
+    <linearGradient id="amberOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF5722" />
+      <stop offset="35%" stop-color="#FF9800" />
+      <stop offset="70%" stop-color="#FFB300" />
+      <stop offset="100%" stop-color="#FFA000" />
+    </linearGradient>
+
+    <!-- Deep Wave Accent Gradient -->
+    <linearGradient id="deepAmber" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#BF360C" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#E65100" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#FF8F00" stop-opacity="0.85" />
+    </linearGradient>
+
+    <!-- Text Glow Effect -->
+    <filter id="amberGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <style>
+      .bg-rect {
+        fill: #0d0e12;
+      }
+      .title-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 900;
+        font-size: 50px;
+        letter-spacing: 4px;
+        fill: url(#amberOrange);
+        filter: url(#amberGlow);
+        animation: pulseTitle 4s ease-in-out infinite alternate;
+      }
+      .sub-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 5px;
+        fill: #FFD54F;
+        animation: fadeSub 3s ease-in-out infinite alternate;
+      }
+      .wave-base {
+        animation: waveAnim 12s linear infinite;
+      }
+      .wave-mid {
+        animation: waveAnim 8s linear infinite reverse;
+      }
+      .wave-front {
+        animation: waveAnim 5s linear infinite;
+      }
+
+      @keyframes waveAnim {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-600px); }
+      }
+      @keyframes pulseTitle {
+        0% { opacity: 0.85; transform: scale(0.99); }
+        50% { opacity: 1; filter: drop-shadow(0 0 16px #FF9800); transform: scale(1); }
+        100% { opacity: 0.85; transform: scale(0.99); }
+      }
+      @keyframes fadeSub {
+        0% { opacity: 0.45; letter-spacing: 4px; }
+        100% { opacity: 0.95; letter-spacing: 6px; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect class="bg-rect" width="1200" height="320" rx="14" />
+
+  <!-- Animated Text Layer -->
+  <g transform="translate(600, 110)">
+    <text class="title-text" text-anchor="middle">PROJECT AMBER X360</text>
+    <text class="sub-text" y="46" text-anchor="middle">CLOSED DISTRIBUTION ARCHITECTURE</text>
+  </g>
+
+  <!-- Wave 1: Back Low-Opacity Deep Flow -->
+  <g transform="translate(0, 160)">
+    <path class="wave-base" fill="url(#deepAmber)" opacity="0.35"
+      d="M 0 60 Q 150 10 300 60 T 600 60 T 900 60 T 1200 60 T 1500 60 T 1800 60 L 1800 160 L 0 160 Z" />
+  </g>
+
+  <!-- Wave 2: Mid Dynamic Ripple -->
+  <g transform="translate(0, 175)">
+    <path class="wave-mid" fill="url(#amberOrange)" opacity="0.55"
+      d="M 0 50 Q 150 90 300 50 T 600 50 T 900 50 T 1200 50 T 1500 50 T 1800 50 L 1800 145 L 0 145 Z" />
+  </g>
+
+  <!-- Wave 3: Foreground High-Intensity Amber Curve -->
+  <g transform="translate(0, 195)">
+    <path class="wave-front" fill="url(#amberOrange)" opacity="0.9"
+      d="M 0 40 Q 150 10 300 40 T 600 40 T 900 40 T 1200 40 T 1500 40 T 1800 40 L 1800 125 L 0 125 Z" />
+  </g>
+</svg>
