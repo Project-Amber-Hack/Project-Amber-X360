@@ -1,100 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
   <defs>
-    <!-- Primary Amber to Orange Linear Gradient -->
     <linearGradient id="amberOrange" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FF5722" />
-      <stop offset="35%" stop-color="#FF9800" />
-      <stop offset="70%" stop-color="#FFB300" />
-      <stop offset="100%" stop-color="#FFA000" />
+      <stop offset="0%" stop-color="#FF3D00" />
+      <stop offset="30%" stop-color="#FF6D00" />
+      <stop offset="65%" stop-color="#FF9100" />
+      <stop offset="100%" stop-color="#FFC400" />
     </linearGradient>
 
-    <!-- Deep Wave Accent Gradient -->
     <linearGradient id="deepAmber" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#BF360C" stop-opacity="0.9" />
-      <stop offset="50%" stop-color="#E65100" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#FF8F00" stop-opacity="0.85" />
+      <stop offset="0%" stop-color="#DD2C00" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#FF6F00" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#FFA000" stop-opacity="0.8" />
     </linearGradient>
 
-    <!-- Text Glow Effect -->
-    <filter id="amberGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
       <feMerge>
+        <feMergeNode in="blur" />
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
 
     <style>
-      .bg-rect {
-        fill: #0d0e12;
-      }
+      .bg-rect { fill: #0b0c10; }
       .title-text {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-weight: 900;
-        font-size: 50px;
-        letter-spacing: 4px;
+        font-size: 54px;
+        letter-spacing: 5px;
         fill: url(#amberOrange);
-        filter: url(#amberGlow);
-        animation: pulseTitle 4s ease-in-out infinite alternate;
+        filter: url(#neonGlow);
+        animation: pulseTitle 3.5s ease-in-out infinite alternate;
       }
       .sub-text {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 15px;
-        font-weight: 600;
-        letter-spacing: 5px;
-        fill: #FFD54F;
+        font-weight: 700;
+        letter-spacing: 6px;
+        fill: #FFE082;
         animation: fadeSub 3s ease-in-out infinite alternate;
       }
-      .wave-base {
-        animation: waveAnim 12s linear infinite;
-      }
-      .wave-mid {
-        animation: waveAnim 8s linear infinite reverse;
-      }
-      .wave-front {
-        animation: waveAnim 5s linear infinite;
-      }
+      .wave-slow { animation: waveAnim 14s linear infinite; }
+      .wave-mid { animation: waveAnim 9s linear infinite reverse; }
+      .wave-fast { animation: waveAnim 5.5s linear infinite; }
 
       @keyframes waveAnim {
         0% { transform: translateX(0); }
         100% { transform: translateX(-600px); }
       }
       @keyframes pulseTitle {
-        0% { opacity: 0.85; transform: scale(0.99); }
-        50% { opacity: 1; filter: drop-shadow(0 0 16px #FF9800); transform: scale(1); }
-        100% { opacity: 0.85; transform: scale(0.99); }
+        0% { opacity: 0.85; filter: drop-shadow(0 0 8px #FF6D00); }
+        100% { opacity: 1; filter: drop-shadow(0 0 25px #FFAB00); }
       }
       @keyframes fadeSub {
-        0% { opacity: 0.45; letter-spacing: 4px; }
-        100% { opacity: 0.95; letter-spacing: 6px; }
+        0% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+      .particle { animation: floatOrb 4s ease-in-out infinite alternate; }
+      @keyframes floatOrb {
+        0% { transform: translateY(0); opacity: 0.3; }
+        100% { transform: translateY(-30px); opacity: 0.9; }
       }
     </style>
   </defs>
 
-  <!-- Background Base -->
-  <rect class="bg-rect" width="1200" height="320" rx="14" />
+  <rect class="bg-rect" width="1200" height="360" rx="16" />
 
-  <!-- Animated Text Layer -->
-  <g transform="translate(600, 110)">
+  <!-- Animated Particles -->
+  <circle class="particle" cx="200" cy="180" r="4" fill="#FFA000" style="animation-delay: 0s;" />
+  <circle class="particle" cx="450" cy="140" r="3" fill="#FF6D00" style="animation-delay: 1.2s;" />
+  <circle class="particle" cx="750" cy="190" r="5" fill="#FFC400" style="animation-delay: 0.5s;" />
+  <circle class="particle" cx="1020" cy="130" r="4" fill="#FF9100" style="animation-delay: 2s;" />
+
+  <!-- Animated Text -->
+  <g transform="translate(600, 125)">
     <text class="title-text" text-anchor="middle">PROJECT AMBER X360</text>
-    <text class="sub-text" y="46" text-anchor="middle">CLOSED DISTRIBUTION ARCHITECTURE</text>
+    <text class="sub-text" y="52" text-anchor="middle">CLOSED DISTRIBUTION ARCHITECTURE</text>
   </g>
 
-  <!-- Wave 1: Back Low-Opacity Deep Flow -->
-  <g transform="translate(0, 160)">
-    <path class="wave-base" fill="url(#deepAmber)" opacity="0.35"
-      d="M 0 60 Q 150 10 300 60 T 600 60 T 900 60 T 1200 60 T 1500 60 T 1800 60 L 1800 160 L 0 160 Z" />
+  <!-- Animated Multi-Layer Waves -->
+  <g transform="translate(0, 185)">
+    <path class="wave-slow" fill="url(#deepAmber)" opacity="0.35"
+      d="M 0 60 Q 150 10 300 60 T 600 60 T 900 60 T 1200 60 T 1500 60 T 1800 60 L 1800 175 L 0 175 Z" />
   </g>
-
-  <!-- Wave 2: Mid Dynamic Ripple -->
-  <g transform="translate(0, 175)">
+  <g transform="translate(0, 205)">
     <path class="wave-mid" fill="url(#amberOrange)" opacity="0.55"
-      d="M 0 50 Q 150 90 300 50 T 600 50 T 900 50 T 1200 50 T 1500 50 T 1800 50 L 1800 145 L 0 145 Z" />
+      d="M 0 55 Q 150 95 300 55 T 600 55 T 900 55 T 1200 55 T 1500 55 T 1800 55 L 1800 155 L 0 155 Z" />
   </g>
-
-  <!-- Wave 3: Foreground High-Intensity Amber Curve -->
-  <g transform="translate(0, 195)">
-    <path class="wave-front" fill="url(#amberOrange)" opacity="0.9"
-      d="M 0 40 Q 150 10 300 40 T 600 40 T 900 40 T 1200 40 T 1500 40 T 1800 40 L 1800 125 L 0 125 Z" />
+  <g transform="translate(0, 225)">
+    <path class="wave-fast" fill="url(#amberOrange)" opacity="0.9"
+      d="M 0 45 Q 150 10 300 45 T 600 45 T 900 45 T 1200 45 T 1500 45 T 1800 45 L 1800 135 L 0 135 Z" />
   </g>
 </svg>
