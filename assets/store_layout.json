@@ -1,1 +1,21 @@
+{
+  "storefront_configuration": {
+    "app_name": "Project Amber Store",
+    "theme_variant": "Dark Premium Translucent",
+    "target_resolution": "1280x720",
+    "ui_dimensions": {
+      "grid_columns": 3,
+      "grid_rows": 2,
+      "padding_x": 40,
+      "padding_y": 60,
+      "card_opacity": 0.50
+    },
+    "color_palette_hex": {
+      "text_primary": "#FFFFFF",
+      "text_category_subtext": "#888888",
+      "selection_highlight_glow": "#FF9900",
+      "overlay_background_tint": "#000000"
+    }
+  }
+}
 
