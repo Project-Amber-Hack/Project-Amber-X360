@@ -1,1 +1,49 @@
+name: Project Amber XEX Production Build Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  compile-xbox360-xex:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code Repository Assets
+      uses: actions/checkout@v4
+
+    - name: Configure Linux Build Environments and Compression Engines
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc-powerpc-linux-gnu git cmake zlib1g-dev liblzma-dev libssl-dev
+
+    - name: Build Native Packaging Toolchain (xextool) from Source
+      run: |
+        git clone --recursive https://github.com /tmp/xextool
+        cd /tmp/xextool
+        make
+        sudo cp xextool /usr/local/bin/xextool
+        rm -rf /tmp/xextool
+
+    - name: Execute Makefile System Compilation
+      run: |
+        # Use the standard Linux powerpc cross compiler mapping for cloud pipelines
+        mkdir -p build
+        powerpc-linux-gnu-gcc -O2 -m32 -ffreestanding -I./src -c src/main.c -o src/main.o
+        powerpc-linux-gnu-gcc -O2 -m32 -ffreestanding -I./src -c src/store_ui.c -o src/store_ui.o
+        powerpc-linux-gnu-gcc -O2 -m32 -ffreestanding -I./src -c src/network.c -o src/network.o
+        powerpc-linux-gnu-gcc -O2 -m32 -ffreestanding -I./src -c src/video_player.c -o src/video_player.o
+        powerpc-linux-gnu-gcc -m32 src/main.o src/store_ui.o src/network.o src/video_player.o -o build/project_amber.elf
+
+    - name: Process ELF Structural Container to Xbox 360 Executable
+      run: |
+        xextool -c u -e u -o default.xex build/project_amber.elf
+
+    - name: Archive and Publish Finished Compiled XEX Program
+      uses: actions/upload-artifact@v4
+      with:
+        name: Project-Amber-X360-default.xex
+        path: default.xex
 
